@@ -1,0 +1,100 @@
+footer {
+  background-color: black;
+}
+.button {
+  background: url(../img/family-doctor-018.jpg) #eeeeee;
+  background-size: cover;
+  background-position: center;
+}
+.footer_top {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+.footer_top h3 {
+  flex: 1;
+  color: white;
+  font-size: 65px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  margin-right: 50px;
+}
+.footer_top ul {
+  padding: 0;
+  list-style: none;
+  font-size: 25px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+.footer_top ul li a {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+.footer_card {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  text-align: center;
+}
+.footer_card li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+  gap: 3px;
+}
+.footer_card li img {
+  padding-bottom: 10px;
+}
+.footer_card :first-child {
+  border-top-left-radius: 10px;
+}
+.footer_card :last-child {
+  border-bottom-right-radius: 10px;
+}
+.cart-1 {
+  background-color: #20a1a5;
+  color: white;
+}
+.cart-2 {
+  background-color: #01758a;
+  color: white;
+}
+.cart-3 {
+  background-color: #aacd70;
+
+  color: rgb(0, 0, 0);
+}
+.cart-4 {
+  background-color: #829267;
+
+  color: rgb(0, 0, 0);
+}
+.footer_botton {
+  background-color: rgb(32, 32, 32);
+  padding: 3px 0;
+  color: rgb(141, 141, 141);
+}
+.gradient_footer {
+  background: radial-gradient(
+    circle,
+    rgba(97, 97, 97, 0.6) 11%,
+    rgba(75, 75, 75, 0.7) 40%,
+    rgba(41, 41, 41, 0.7) 82%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  padding: 20px;
+}
+@media screen and (min-width: 990px) and (max-width: 1400px) {
+  .footer_card {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}
+@media screen and (max-width: 580px) {
+  .footer_top h3 {
+    font-size: 45px;
+  }
+}
