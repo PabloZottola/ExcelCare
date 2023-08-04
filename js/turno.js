@@ -2,32 +2,32 @@
 
 // Función para obtener los turnos guardados almacenados en LocalStorage
 function obtenerTurnosGuardados() {
-  const turnosGuardadosString = localStorage.getItem('turnosGuardados');
+  const turnosGuardadosString = localStorage.getItem("turnosGuardados");
   return JSON.parse(turnosGuardadosString) || [];
 }
 
 // Función para guardar los turnos guardados en LocalStorage
 function guardarTurnosGuardados(turnosGuardadosArray) {
   const turnosGuardadosString = JSON.stringify(turnosGuardadosArray);
-  localStorage.setItem('turnosGuardados', turnosGuardadosString);
+  localStorage.setItem("turnosGuardados", turnosGuardadosString);
 }
 
 // Función para mostrar los turnos guardados en la página
 function mostrarTurnosGuardados(turnosGuardadosArray) {
-  const turnosGuardadosList = document.getElementById('turnosGuardadosList');
-  turnosGuardadosList.innerHTML = '';
+  const turnosGuardadosList = document.getElementById("turnosGuardadosList");
+  turnosGuardadosList.innerHTML = "";
 
   // Recorrer cada turno guardado en el array de turnosGuardadosArray
   turnosGuardadosArray.forEach((turno, index) => {
-    const listItem = document.createElement('li');
-    listItem.className = 'list-group-item';
+    const listItem = document.createElement("li");
+    listItem.className = "list-group-item";
     listItem.textContent = `Paciente: ${turno.nombre} - Fecha: ${turno.fecha} - Hora: ${turno.hora} - Profesional: ${turno.profesional} - Patología: ${turno.patologia}`; // Agregado
 
     // Agregar botón de eliminar al ítem de la lista de turnosGuardadosArray
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'btn btn-danger btn-sm float-right';
-    deleteButton.textContent = 'Eliminar';
-    deleteButton.addEventListener('click', function () {
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "btn btn-danger btn-sm float-right";
+    deleteButton.textContent = "Eliminar";
+    deleteButton.addEventListener("click", function () {
       eliminarTurnoGuardado(index, turnosGuardadosArray);
     });
 
@@ -36,7 +36,7 @@ function mostrarTurnosGuardados(turnosGuardadosArray) {
 
     // Ocultar el turno después de 10 segundos
     setTimeout(function () {
-      listItem.style.display = 'none';
+      listItem.style.display = "none";
     }, 10000);
   });
 }
@@ -52,26 +52,28 @@ function eliminarTurnoGuardado(index, turnosGuardadosArray) {
   mostrarTurnosGuardados(turnosGuardadosArray);
 
   // Mostrar un alert con el turno guardado eliminado
-  alert(`El turno de ${turnoGuardadoEliminado.nombre} - Fecha: ${turnoGuardadoEliminado.fecha} - Hora: ${turnoGuardadoEliminado.hora} - Profesional: ${turnoGuardadoEliminado.profesional} ha sido eliminado de los turnos guardados`);
+  alert(
+    `El turno de ${turnoGuardadoEliminado.nombre} - Fecha: ${turnoGuardadoEliminado.fecha} - Hora: ${turnoGuardadoEliminado.hora} - Profesional: ${turnoGuardadoEliminado.profesional} ha sido eliminado de los turnos guardados`
+  );
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const turnoForm = document.getElementById('turnoForm');
-  const verTurnosButton = document.getElementById('verTurnosBtn'); // Agregado
+document.addEventListener("DOMContentLoaded", function () {
+  const turnoForm = document.getElementById("turnoForm");
+  const verTurnosButton = document.getElementById("verTurnosBtn"); // Agregado
 
   // Obtener los turnos guardados almacenados en LocalStorage y mostrarlos en la lista
   const turnosGuardadosArray = obtenerTurnosGuardados();
   mostrarTurnosGuardados(turnosGuardadosArray);
 
-  turnoForm.addEventListener('submit', function (event) {
+  turnoForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     // Obtener los valores del formulario para el nuevo turno
-    const nombre = document.getElementById('nombre').value;
-    const fecha = document.getElementById('fecha').value;
-    const hora = document.getElementById('hora').value;
-    const profesional = document.getElementById('profesional').value;
-    const patologia = document.getElementById('patologia').value;
+    const nombre = document.getElementById("nombre").value;
+    const fecha = document.getElementById("fecha").value;
+    const hora = document.getElementById("hora").value;
+    const profesional = document.getElementById("profesional").value;
+    const patologia = document.getElementById("patologia").value;
 
     // Crear un nuevo objeto de turno con los datos del formulario
     const nuevoTurno = {
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fecha,
       hora,
       profesional,
-      patologia
+      patologia,
     };
 
     // Agregar el nuevo turno al array de turnos guardados
@@ -94,13 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Mostrar u ocultar la lista de turnos guardados al hacer clic en el botón
-  verTurnosButton.addEventListener('click', function () {
-    const listaTurnosGuardados = document.getElementById('turnosGuardadosList');
-    if (listaTurnosGuardados.style.display === 'none') {
-      listaTurnosGuardados.style.display = 'block';
+  verTurnosButton.addEventListener("click", function () {
+    const listaTurnosGuardados = document.getElementById("turnosGuardadosList");
+    if (listaTurnosGuardados.style.display === "none") {
+      listaTurnosGuardados.style.display = "block";
     } else {
-      listaTurnosGuardados.style.display = 'none';
+      listaTurnosGuardados.style.display = "none";
     }
   });
 });
-
