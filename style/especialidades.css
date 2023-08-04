@@ -87,7 +87,7 @@ main {
   color: rgb(0, 0, 0);
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 992px) {
   .top div h2 {
     padding: 40px 0;
     font-size: 30px;

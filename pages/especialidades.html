@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../style/navbar.css" />
     <link rel="stylesheet" href="../style/especialidades.css" />
     <link rel="stylesheet" href="../style/footer.css" />
+    <link rel="stylesheet" href="../style/modal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,15 +32,6 @@
         <div class="container">
           <div class="nav">
             <a href="#"><img id="logo" src="../img/logo.png" alt="" /></a>
-            <div class="menu">
-              <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Especialidades</a></li>
-                <li><a href="#">Profesionales</a></li>
-                <li><a href="#">Contacto</a></li>
-              </ul>
-            </div>
-
             <div class="menu-toggle">
               <div>
                 <div class="bar"></div>
@@ -47,14 +39,23 @@
                 <div class="bar"></div>
               </div>
               <ul class="nav-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Productos</a></li>
+                <li><a href="./especialidades.html">Especialidades</a></li>
+                <li><a href="#">Profesionales</a></li>
                 <li><a href="#">Contacto</a></li>
+                <li>
+                  <button id="buttonRegister_p">Registro pacientes</button>
+                </li>
+                <li>
+                  <button id="buttonRegister_m">Registro medicos</button>
+                </li>
+                <li>
+                  <button id="buttonLogin">Login</button>
+                </li>
               </ul>
             </div>
           </div>
         </div>
+        <div id="modal"></div>
       </nav>
     </header>
     <main class="content">
@@ -234,5 +235,7 @@
       </section>
     </footer>
     <script src="../js/navbar.js"></script>
+    <script src="../js/modalForm.js"></script>
+    <script src="../js/form.js"></script>
   </body>
 </html>
