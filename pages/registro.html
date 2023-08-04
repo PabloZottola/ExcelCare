@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Clínica Médica</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Servicios</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link btn btn-outline-primary" href="#">Iniciar Sesión</a>
+            </li>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary btn-separados" data-bs-toggle="modal"
+              data-bs-target="#registroPaciente" style="margin-right: 5px; border-radius: 15px;background-color: #007bff; color: #fff;">
+              Registra como Paciente
+          </button>
+          <button type="button" class="btn btn-primary btn-separados" data-bs-toggle="modal"
+              data-bs-target="#exampleModal" style="border-radius: 15px; background-color: #007bff; color: #fff;"  >
+              Registrar como Médico
+          </button>
+          
+            </div>
+        </ul>
+    </div>
+</nav>
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de medicos</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+          </div>
+          <div class="modal-body">
+            <div class="container mt-5">
+             
+              <form id="medicoForm">
+                <div class="form-group">
+                  <label for="nombreMedico">Nombre:</label>
+                  <input type="text" class="form-control" id="nombreMedico" maxlength="50">
+                </div>
+                <div class="form-group">
+                  <label for="apellidoMedico">Apellido:</label>
+                  <input type="text" class="form-control" id="apellidoMedico" maxlength="50" >
+                </div>
+                <div class="form-group">
+                  <label for="matriculaMedico">Número de Matrícula:</label>
+                  <input type="text" class="form-control" id="matriculaMedico"maxlength="20" minlength="2" >
+                </div>
+                <div class="form-group">
+                  <label for="emailMedico">Correo electrónico:</label>
+                  <input type="email" class="form-control" id="emailMedico" >
+                </div>
+                <div class="form-group">
+                  <label for="contrasenaMedico">Contraseña:</label>
+                  <input type="password" class="form-control" id="contrasenaMedico" maxlength="10" minlength="2">
+                </div>
+                <div class="form-group">
+                  <label for="repetirContrasenaMedico">Repetir Contraseña:</label>
+                  <input type="password" class="form-control" id="repetirContrasenaMedico" maxlength="10" minlength="2">
+                </div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Registrar Médico</button>
+              </form>
+            </div>
+         
+          
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="registroPaciente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de Pacientes</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          
+          <form id="pacienteForm">
+            <div class="form-group">
+              <label for="nombrePaciente">Nombre:</label>
+              <input type="text" class="form-control" id="nombrePaciente" >
+            </div>
+            <div class="form-group">
+              <label for="apellidoPaciente">Apellido:</label>
+              <input type="text" class="form-control" id="apellidoPaciente" >
+            </div>
+            <div class="form-group">
+              <label for="emailPaciente">Correo electrónico:</label>
+              <input type="email" class="form-control" id="emailPaciente" >
+            </div>
+            <div class="form-group">
+              <label for="contrasenaPaciente">Contraseña:</label>
+              <input type="password" class="form-control" id="contrasenaPaciente" >
+            </div>
+            <div class="form-group">
+              <label for="repetirContrasenaPaciente">Repetir Contraseña:</label>
+              <input type="password" class="form-control" id="repetirContrasenaPaciente" >
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar Paciente</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          </form>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Aquí iría el contenido de la página -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/registroP.js"></script>
+    <script src="../js/registroD.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
