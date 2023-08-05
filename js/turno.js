@@ -33,11 +33,6 @@ function mostrarTurnosGuardados(turnosGuardadosArray) {
 
     listItem.appendChild(deleteButton);
     turnosGuardadosList.appendChild(listItem);
-
-    // Ocultar el turno después de 10 segundos
-    setTimeout(function () {
-      listItem.style.display = "none";
-    }, 10000);
   });
 }
 

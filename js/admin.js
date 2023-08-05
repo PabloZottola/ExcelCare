@@ -5,24 +5,45 @@ let blockUser = JSON.parse(localStorage.getItem("bloqueados")) || [];
 function userTable() {
   const tableUser = document.getElementById("userTable");
   tableUser.innerHTML = "";
+
   storedUsers.map((user) => {
     let tr = document.createElement("tr");
-    tr.innerHTML = `
-        <td class="table-dark">${user.nameUser}</td>
-        <td class="table-dark">${user.email}</td>
-        <td class="table-dark">${user.phone}</td>
-        <td>
-          <button class="icons" onclick="approvedUsers('${user.email}')">
-            <img src="../img/check.png" alt="check-icon" />
-          </button>
-        </td>
-        <td>
-          <button class="icons" onclick="blockedUsers('${user.email}')">
-            <img src="../img/trash.png" alt="check-icon" />
-          </button>
-        </td>
-    `;
-    console.log(tr);
+    if (user.matricula !== null) {
+      tr.innerHTML = `
+      <td class="table-dark">${user.nameUser}</td>
+      <td class="table-dark">${user.email}</td>
+      <td class="table-dark">${user.phone}</td>
+      <td class="table-dark icons"><img src="../img/medico2.png" alt="" /></td>
+      <td class="table-dark">${user.matricula}</td>
+      <td>
+        <button class="icons" onclick="approvedUsers('${user.email}')">
+          <img src="../img/check.png" alt="check-icon" />
+        </button>
+      </td>
+      <td>
+        <button class="icons" onclick="blockedUsers('${user.email}')">
+          <img src="../img/trash.png" alt="check-icon" />
+        </button>
+      </td>`;
+    } else {
+      tr.innerHTML = `
+      <td class="table-dark">${user.nameUser}</td>
+      <td class="table-dark">${user.email}</td>
+      <td class="table-dark">${user.phone}</td>
+      <td class="table-dark icons"><img src="../img/paciente2.png" alt="" /></td>
+      <td class="table-dark">${user.matricula}</td>
+      <td>
+        <button class="icons" onclick="approvedUsers('${user.email}')">
+          <img src="../img/check.png" alt="check-icon" />
+        </button>
+      </td>
+      <td>
+        <button class="icons" onclick="blockedUsers('${user.email}')">
+          <img src="../img/trash.png" alt="check-icon" />
+        </button>
+      </td>`;
+    }
+
     tableUser.appendChild(tr);
   });
 }
@@ -31,17 +52,36 @@ function blockTable() {
   blockTable.innerHTML = "";
   blockUser.map((user) => {
     let tr = document.createElement("tr");
-    tr.innerHTML = `
-        <td class="table-dark">${user.nameUser}</td>
-        <td class="table-dark">${user.email}</td>
-        <td class="table-dark">${user.phone}</td>
-        <td>
-          <button class="icons" onclick="approvedUsers('${user.email}')">
-            <img src="../img/check.png" alt="check-icon" />
-          </button>
-        </td>
-        <td></td>
-    `;
+    if (user.matricula !== null) {
+      tr.innerHTML = `
+      <td class="table-dark">${user.nameUser}</td>
+      <td class="table-dark">${user.email}</td>
+      <td class="table-dark">${user.phone}</td>
+      <td class="table-dark icons"><img src="../img/medico2.png" alt="" /></td>
+      <td class="table-dark">${user.matricula}</td>
+      <td>
+        <button class="icons" onclick="approvedUsers('${user.email}')">
+          <img src="../img/check.png" alt="check-icon" />
+        </button>
+      </td>
+      <td></td>
+  `;
+    } else {
+      tr.innerHTML = `
+      <td class="table-dark">${user.nameUser}</td>
+      <td class="table-dark">${user.email}</td>
+      <td class="table-dark">${user.phone}</td>
+      <td class="table-dark icons"><img src="../img/paciente2.png" alt="" /></td>
+      <td class="table-dark">${user.matricula}</td>
+      <td>
+        <button class="icons" onclick="approvedUsers('${user.email}')">
+          <img src="../img/check.png" alt="check-icon" />
+        </button>
+      </td>
+      <td></td>
+  `;
+    }
+
     blockTable.appendChild(tr);
   });
 }
@@ -49,12 +89,30 @@ function blockTable() {
 function approvedTable() {
   const approvedTable = document.getElementById("approvedTable");
   approvedTable.innerHTML = "";
+  aprovUser = aprovUser.filter((user) => user.email != "admin@gmail.com");
   aprovUser.map((user) => {
     let tr = document.createElement("tr");
-    tr.innerHTML = `
+    if (user.matricula !== null) {
+      tr.innerHTML = `
+      <td class="table-dark">${user.nameUser}</td>
+      <td class="table-dark">${user.email}</td>
+      <td class="table-dark">${user.phone}</td>
+      <td class="table-dark icons"><img src="../img/medico2.png" alt="" /></td>
+      <td class="table-dark">${user.matricula}</td>
+      <td></td>
+      <td>
+        <button class="icons" onclick="blockedUsers('${user.email}')">
+          <img src="../img/trash.png" alt="check-icon" />
+        </button>
+      </td>
+  `;
+    } else {
+      tr.innerHTML = `
         <td class="table-dark">${user.nameUser}</td>
         <td class="table-dark">${user.email}</td>
         <td class="table-dark">${user.phone}</td>
+        <td class="table-dark icons"><img src="../img/paciente2.png" alt="" /></td>
+        <td class="table-dark">${user.matricula}</td>
         <td></td>
         <td>
           <button class="icons" onclick="blockedUsers('${user.email}')">
@@ -62,6 +120,8 @@ function approvedTable() {
           </button>
         </td>
     `;
+    }
+
     approvedTable.appendChild(tr);
   });
 }
@@ -107,7 +167,7 @@ const approvedUsers = (email) => {
 
 function logout() {
   localStorage.removeItem("isAdmin");
-  window.location.href = "../pages/formularioRegistro.html";
+  window.location.href = "../index.html";
 }
 
 window.onload = function () {
@@ -116,6 +176,6 @@ window.onload = function () {
   blockTable();
   const isAdmin = localStorage.getItem("isAdmin");
   if (!isAdmin) {
-    window.location.href = "../pages/formularioRegistro.html";
+    window.location.href = "../pages/admin.html";
   }
 };
