@@ -3,28 +3,22 @@ function validateEmail(email) {
   const validateEmail = regEx.test(email);
   return validateEmail;
 }
-function checkEmptySpacesRegister(
-  nameUser,
-  email,
-  phone,
-  password,
-  confirmPassword
-) {
+function checkEmptySpacesRegister_P(nameUser, email, phone, password) {
   if (
     nameUser.trim() === "" ||
     email.trim() === "" ||
     phone.trim() === "" ||
-    password.trim() === "" ||
-    confirmPassword.trim() === ""
+    password.trim() === ""
   ) {
     return true;
   } else {
     return false;
   }
 }
-function checkEmptySpacesRegister(
+function checkEmptySpacesRegister_M(
   nameUser,
   email,
+  matricula,
   phone,
   password,
   confirmPassword
@@ -32,6 +26,7 @@ function checkEmptySpacesRegister(
   if (
     nameUser.trim() === "" ||
     email.trim() === "" ||
+    matricula.trim() === "" ||
     phone.trim() === "" ||
     password.trim() === "" ||
     confirmPassword.trim() === ""
@@ -48,7 +43,7 @@ function checkEmptySpacesLogin(email, password) {
     return false;
   }
 }
-function validateDataRegister(
+function validateDataRegister_P(
   nameUser,
   email,
   phone,
@@ -56,13 +51,30 @@ function validateDataRegister(
   confirmPassword
 ) {
   let storedUsers = JSON.parse(localStorage.getItem("usuarios")) || [];
+  let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
+  let blockUser = JSON.parse(localStorage.getItem("bloqueados")) || [];
   const emailExists = storedUsers.find((storedUsers) => {
     return storedUsers.email === email;
   });
+  const emailExists_A = aprovUser.find((aprovUser) => {
+    return aprovUser.email === email;
+  });
+  const emailExists_B = blockUser.find((blockUser) => {
+    return blockUser.email === email;
+  });
   if (
-    checkEmptySpacesRegister(nameUser, email, phone, password, confirmPassword)
+    checkEmptySpacesRegister_P(
+      nameUser,
+      email,
+      phone,
+      password,
+      confirmPassword
+    )
   ) {
     formError.textContent = "Todos los campos son obligatorios.";
+    return;
+  } else if (/\d/.test(nameUser)) {
+    formError.textContent = "Nombre invalido";
     return;
   } else if (nameUser.length <= 2) {
     formError.textContent = "Nombre invalido";
@@ -70,8 +82,15 @@ function validateDataRegister(
   } else if (!validateEmail(email)) {
     formError.textContent = "Formato de E-mail no valido.";
     return;
-  } else if (emailExists !== undefined) {
+  } else if (
+    emailExists !== undefined ||
+    emailExists_A !== undefined ||
+    emailExists_B !== undefined
+  ) {
     formError.textContent = "E-mail esta en uso.";
+    return;
+  } else if (/[a-zA-Z]/.test(phone)) {
+    formError.textContent = "Numero de telefono invalido";
     return;
   } else if (phone.length < 10) {
     formError.textContent = "Numero de telefono invalido";
@@ -89,21 +108,49 @@ function validateDataRegister(
     return true;
   }
 }
-function validateDataRegister(
+function validateDataRegister_M(
   nameUser,
   email,
+  matricula,
   phone,
   password,
   confirmPassword
 ) {
   let storedUsers = JSON.parse(localStorage.getItem("usuarios")) || [];
+  let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
+  let blockUser = JSON.parse(localStorage.getItem("bloqueados")) || [];
   const emailExists = storedUsers.find((storedUsers) => {
     return storedUsers.email === email;
   });
+  const emailExists_A = aprovUser.find((aprovUser) => {
+    return aprovUser.email === email;
+  });
+  const emailExists_B = blockUser.find((blockUser) => {
+    return blockUser.email === email;
+  });
+  const matriculaExists = storedUsers.find((storedUsers) => {
+    return storedUsers.matricula === matricula;
+  });
+  const matriculaExists_A = aprovUser.find((aprovUser) => {
+    return aprovUser.matricula === matricula;
+  });
+  const matriculaExists_B = blockUser.find((blockUser) => {
+    return blockUser.matricula === matricula;
+  });
   if (
-    checkEmptySpacesRegister(nameUser, email, phone, password, confirmPassword)
+    checkEmptySpacesRegister_M(
+      nameUser,
+      email,
+      matricula,
+      phone,
+      password,
+      confirmPassword
+    )
   ) {
     formError.textContent = "Todos los campos son obligatorios.";
+    return;
+  } else if (/\d/.test(nameUser)) {
+    formError.textContent = "Nombre invalido";
     return;
   } else if (nameUser.length <= 2) {
     formError.textContent = "Nombre invalido";
@@ -111,8 +158,28 @@ function validateDataRegister(
   } else if (!validateEmail(email)) {
     formError.textContent = "Formato de E-mail no valido.";
     return;
-  } else if (emailExists !== undefined) {
+  } else if (
+    emailExists !== undefined ||
+    emailExists_A !== undefined ||
+    emailExists_B !== undefined
+  ) {
     formError.textContent = "E-mail esta en uso.";
+    return;
+  } else if (matricula.length < 5) {
+    formError.textContent = "Nombre invalido";
+    return;
+  } else if (/[a-zA-Z]/.test(matricula)) {
+    formError.textContent = "Numero de matricula invalido";
+    return;
+  } else if (
+    matriculaExists !== undefined ||
+    matriculaExists_A !== undefined ||
+    matriculaExists_B !== undefined
+  ) {
+    formError.textContent = "Matricula ya registrada.";
+    return;
+  } else if (/[a-zA-Z]/.test(phone)) {
+    formError.textContent = "Numero de telefono invalido";
     return;
   } else if (phone.length < 10) {
     formError.textContent = "Numero de telefono invalido";
@@ -158,21 +225,38 @@ function validateDataLogin(email, password) {
     return;
   }
 }
-function storage(nameUser, email, phone, password) {
+function storage(nameUser, email, phone, password, matricula) {
   let storedUsers = JSON.parse(localStorage.getItem("usuarios")) || [];
-  class User {
-    constructor(nameUser, email, phone, password) {
-      (this.nameUser = nameUser),
-        (this.email = email),
-        (this.phone = phone),
-        (this.password = password);
+  if (matricula === undefined) {
+    class User {
+      constructor(nameUser, email, phone, password) {
+        (this.nameUser = nameUser),
+          (this.email = email),
+          (this.phone = phone),
+          (this.password = password);
+      }
     }
+    let newUser = new User(nameUser, email, phone, password);
+    storedUsers.push(newUser);
+    localStorage.setItem("usuarios", JSON.stringify(storedUsers));
+  } else {
+    console.log(matricula);
+    class User {
+      constructor(nameUser, email, phone, password, matricula) {
+        (this.nameUser = nameUser),
+          (this.email = email),
+          (this.phone = phone),
+          (this.password = password),
+          (this.matricula = matricula);
+      }
+    }
+    let newUser = new User(nameUser, email, phone, password, matricula);
+    console.log(newUser);
+    storedUsers.push(newUser);
+    localStorage.setItem("usuarios", JSON.stringify(storedUsers));
   }
-  let newUser = new User(nameUser, email, phone, password);
-  storedUsers.push(newUser);
-  localStorage.setItem("usuarios", JSON.stringify(storedUsers));
 }
-function validateRegister(event) {
+function validateRegister_P(event) {
   event.preventDefault();
   const nameUser = document.getElementById("name").value;
   const email = document.getElementById("email").value;
@@ -181,25 +265,31 @@ function validateRegister(event) {
   const confirmPassword = document.getElementById("confirmPassword").value;
 
   if (
-    validateDataRegister(nameUser, email, phone, password, confirmPassword) ==
+    validateDataRegister_P(nameUser, email, phone, password, confirmPassword) ==
     true
   ) {
     storage(nameUser, email, phone, password);
   }
 }
-function validateRegister(event) {
+function validateRegister_M(event) {
   event.preventDefault();
   const nameUser = document.getElementById("name").value;
   const email = document.getElementById("email").value;
+  const matricula = document.getElementById("matricula").value;
   const phone = document.getElementById("phone").value;
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
-
   if (
-    validateDataRegister(nameUser, email, phone, password, confirmPassword) ==
-    true
+    validateDataRegister_M(
+      nameUser,
+      email,
+      matricula,
+      phone,
+      password,
+      confirmPassword
+    ) == true
   ) {
-    storage(nameUser, email, phone, password);
+    storage(nameUser, email, phone, password, matricula);
   }
 }
 function validateLogin(event) {
@@ -209,3 +299,21 @@ function validateLogin(event) {
 
   validateDataLogin(email, password);
 }
+document.addEventListener("DOMContentLoaded", function () {
+  const email = "admin@gmail.com";
+  let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
+  console.log(aprovUser);
+  const administrador = aprovUser.find((user) => {
+    return user.email === email;
+  });
+  7;
+  if (administrador == undefined) {
+    const admin = {
+      nameUser: "admin",
+      email: "admin@gmail.com",
+      password: "admin123",
+    };
+    aprovUser.push(admin);
+    localStorage.setItem("aprobados", JSON.stringify(aprovUser));
+  }
+});

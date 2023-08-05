@@ -107,7 +107,7 @@ const approvedUsers = (email) => {
 
 function logout() {
   localStorage.removeItem("isAdmin");
-  window.location.href = "../pages/formularioRegistro.html";
+  window.location.href = "../index.html";
 }
 
 window.onload = function () {

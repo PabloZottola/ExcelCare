@@ -21,9 +21,10 @@ function modalRegistro_P() {
                 <input
                   type="text"
                   id="name"
-                  name="name"
+                  name="name" 
                   placeholder="Nombre"
                   maxlength="24"
+                  pattern="[A-Z a-z]{3,6}"
                 />
               </label>
               <label>
@@ -32,7 +33,7 @@ function modalRegistro_P() {
                   id="email"
                   name="email"
                   placeholder="E-Mail"
-                  maxlength="30"
+                  maxlength="35"
                 />
               </label>
               <label>
@@ -62,7 +63,7 @@ function modalRegistro_P() {
                   maxlength="20"
                 />
               </label>
-              <button id="submitForm" type="submit" onclick="validateRegister(event)">Registrarse</button>
+              <button id="submitForm" type="submit" onclick="validateRegister_P(event)">Registrarse</button>
             </form>
           </div>
         </div>    
@@ -95,7 +96,16 @@ function modalRegistro_M() {
                   id="email"
                   name="email"
                   placeholder="E-Mail"
-                  maxlength="30"
+                  maxlength="35"
+                />
+              </label>
+              <label>
+                <input
+                  type="text"
+                  id="matricula"
+                  name="matricula"
+                  placeholder="Numero de matricula"
+                  maxlength="5"
                 />
               </label>
               <label>
@@ -125,7 +135,7 @@ function modalRegistro_M() {
                   maxlength="20"
                 />
               </label>
-              <button id="submitForm" type="submit" onclick="validateRegister(event)">Registrarse</button>
+              <button id="submitForm" type="submit" onclick="validateRegister_M(event)">Registrarse</button>
             </form>
           </div>
         </div>    
@@ -138,8 +148,11 @@ function modalLogin() {
       <div id="modalOverlay" class="modalOverlay">
         <div id="modalContainer" class="modalContainer cart-3">
           <span id="modalCloser" class="modalCloser">x</span>
-          <img src="../img/paciente-negro.png" alt="" />
-          <p class="modalHeader">REGISTRO PACIENTES</p>
+          <div>
+            <img src="../img/paciente-negro.png" alt="" />
+            <img src="../img/medico-negro.png" alt="" />
+          </div>
+          <p class="modalHeader">INICIAR SESIÓN</p>
           <div class="modalContent">
             <form id="registerForm" class="registerForm">
               <p id="formError"></p>
@@ -149,7 +162,7 @@ function modalLogin() {
                   id="email"
                   name="email"
                   placeholder="E-Mail"
-                  maxlength="30"
+                  maxlength="35"
                 />
               </label>
               <label>
