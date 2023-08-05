@@ -199,30 +199,26 @@ function validateDataRegister_M(
 }
 function validateDataLogin(email, password) {
   let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
-  const emailExists = aprovUser.find((aprovUser) => {
-    return aprovUser.email === email;
-  });
-  const passwordExists = aprovUser.find((aprovUser) => {
-    return aprovUser.password === password;
-  });
+  User = aprovUser.filter((user) => user.email === email);
   if (checkEmptySpacesLogin(email, password)) {
     formError.textContent = "Todos los campos son obligatorios.";
     return;
-  } else if (emailExists == undefined) {
+  } else if (User[0].email !== email) {
     formError.textContent = "E-mail no registrado.";
     return;
-  } else if (passwordExists == undefined) {
+  } else if (User[0].password !== password) {
     formError.textContent = "Contraseña incorrecta.";
     return;
   } else if (email == "admin@gmail.com" && password == "admin123") {
     localStorage.setItem("isAdmin", "true");
-    window.location.href = "admin.html";
+    window.location.href = "http://127.0.0.1:5500/pages/admin.html";
     return;
+  } else if (User[0].matricula == null) {
+    localStorage.setItem("isPaciente", "true");
+    window.location.href = "http://127.0.0.1:5500/pages/paciente.html";
   } else {
-    console.log("Login Completo");
-    formError.textContent = "";
-    registerForm.reset();
-    return;
+    localStorage.setItem("isMedico", "true");
+    window.location.href = "http://127.0.0.1:5500/pages/medico.html";
   }
 }
 function storage(nameUser, email, phone, password, matricula) {

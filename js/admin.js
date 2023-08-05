@@ -176,6 +176,6 @@ window.onload = function () {
   blockTable();
   const isAdmin = localStorage.getItem("isAdmin");
   if (!isAdmin) {
-    window.location.href = "../pages/formularioRegistro.html";
+    window.location.href = "../pages/admin.html";
   }
 };
