@@ -233,7 +233,8 @@ function storage(nameUser, email, phone, password, matricula) {
         (this.nameUser = nameUser),
           (this.email = email),
           (this.phone = phone),
-          (this.password = password);
+          (this.password = password),
+          (this.matricula = null);
       }
     }
     let newUser = new User(nameUser, email, phone, password);
@@ -302,11 +303,9 @@ function validateLogin(event) {
 document.addEventListener("DOMContentLoaded", function () {
   const email = "admin@gmail.com";
   let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
-  console.log(aprovUser);
   const administrador = aprovUser.find((user) => {
     return user.email === email;
   });
-  7;
   if (administrador == undefined) {
     const admin = {
       nameUser: "admin",

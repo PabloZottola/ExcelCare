@@ -1,5 +1,9 @@
-.body {
-  background: #28242c;
+main {
+  padding-top: 120px;
+  background-color: #212529;
+}
+main div table thead tr td {
+  width: 200px;
 }
 .logout {
   background: none;

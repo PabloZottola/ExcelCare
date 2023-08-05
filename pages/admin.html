@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin</title>
     <link rel="stylesheet" href="../style/admin.css" />
+    <link rel="stylesheet" href="../style/navbar.css" />
+    <link rel="stylesheet" href="../style/footer.css" />
+    <link rel="stylesheet" href="../style/modal.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,77 +27,172 @@
     ></script>
   </head>
   <body class="body">
-    <table class="table table-dark table-hover table-striped userTable">
-      <thead>
-        <tr>
-          <td>USUARIOS PARA APROBAR</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <button class="logout" onclick="logout()">Cerrar Sesión</button>
-          </td>
-        </tr>
-        <tr>
-          <tr>
-            <td>Nombre</td>
-            <td>E-mail</td>
-            <td>Telefono</td>
-            <td>Aprobar</td>
-            <td>Bloquear</td>
-          </tr>
-        </tr>
-      </thead>
-      <tbody id="userTable">
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="5"></td>
-        </tr>
-      </tfoot>
-    </table>
-    <table class="table table-dark table-hover table-striped userTable">
-      <thead class="table-">
-        <tr>
-          <td colspan="5">USUARIOS BLOQUEADOS</td>
-        </tr>
-        <tr>
-          <td>Nombre</td>
-          <td>E-mail</td>
-          <td>Telefono</td>
-          <td>Aprobar</td>
-          <td>Bloquear</td>
-        </tr>
-      </thead>
-      <tbody id="blockTable">
-      </tbody> 
-      <tfoot>
-        <tr>
-          <td colspan="5"></td>
-        </tr>
-      </tfoot>
-    </table>
-    <table class="table table-dark table-hover table-striped userTable">
-      <thead>
-        <tr>
-          <td colspan="5">USUARIOS APROBADOS</td>
-        </tr>
-        <tr>
-          <td>Nombre</td>
-          <td>E-mail</td>
-          <td>Telefono</td>
-          <td>Aprobar</td>
-          <td>Bloquear</td>
-        </tr>
-      </thead>
-      <tbody id="approvedTable">
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="5"></td>
-        </tr>
-      </tfoot>
-    </table>
+    <header>
+      <nav>
+        <div class="container">
+          <div class="nav">
+            <a href="#"><img id="logo" src="../img/logo.png" alt="" /></a>
+            <div class="menu-toggle">
+              <div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+              <ul class="nav-links">
+                <li><a href="./especialidades.html">Especialidades</a></li>
+                <li><a href="#">Profesionales</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li>
+                  <button id="buttonRegister_p">Registro pacientes</button>
+                </li>
+                <li>
+                  <button id="buttonRegister_m">Registro medicos</button>
+                </li>
+                <li>
+                  <button id="buttonLogin">Login</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="modal"></div>
+      </nav>
+    </header>
+    <main>
+      <div class="table-responsive">
+        <table class="table table-dark table-hover table-striped userTable">
+          <thead>
+            <tr>
+              <td>USUARIOS PARA APROBAR</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button class="logout" onclick="logout()">Cerrar Sesión</button>
+              </td>
+            </tr>
+            <tr>
+              <tr>
+                <td>Nombre</td>
+                <td>E-mail</td>
+                <td>Telefono</td>
+                <td>Tipo</td>
+                <td>Matricula</td>
+                <td>Aprobar</td>
+                <td>Bloquear</td>
+              </tr>
+            </tr>
+          </thead>
+          <tbody id="userTable">
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7"></td>
+            </tr>
+          </tfoot>
+        </table>
+        <table class="table table-dark table-hover table-striped userTable">
+          <thead class="table-">
+            <tr>
+              <td colspan="7">USUARIOS BLOQUEADOS</td>
+            </tr>
+            <tr>
+              <td>Nombre</td>
+              <td>E-mail</td>
+              <td>Telefono</td>
+              <td>Tipo</td>
+              <td>Matricula</td>
+              <td>Aprobar</td>
+              <td>Bloquear</td>
+            </tr>
+          </thead>
+          <tbody id="blockTable">
+          </tbody> 
+          <tfoot>
+            <tr>
+              <td colspan="7"></td>
+            </tr>
+          </tfoot>
+        </table>
+        <table class="table table-dark table-hover table-striped userTable">
+          <thead>
+            <tr>
+              <td colspan="7">USUARIOS APROBADOS</td>
+            </tr>
+            <tr>
+              <td>Nombre</td>
+              <td>E-mail</td>
+              <td>Telefono</td>
+              <td>Tipo</td>
+              <td>Matricula</td>
+              <td>Aprobar</td>
+              <td>Bloquear</td>
+            </tr>
+          </thead>
+          <tbody id="approvedTable">
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </main>
+    <footer>
+      <section class="button">
+        <div class="gradient_footer">
+          <div class="container">
+            <div class="footer_top">
+              <h3>Estamos aquí siempre que nos necesite</h3>
+              <ul>
+                <li><strong>Accesos rápidos</strong></li>
+                <li><a href="">Especialidades</a></li>
+                <li><a href="">Profesionales</a></li>
+                <li><a href="">Contacto</a></li>
+              </ul>
+            </div>
+            <ul class="footer_card">
+              <li class="cart-1">
+                <img src="../img/mail_message_icon.png" alt="" />
+                <span> Email </span>
+                <span><strong> info@crin.com.ar </strong></span>
+              </li>
+              <li class="cart-2">
+                <img src="../img/phone_icon.png" alt="" />
+                <span> Teléfono </span>
+                <span><strong> 381 4080337 </strong></span>
+              </li>
+              <li class="cart-3">
+                <img src="../img/clock_icon.png" alt="" />
+                <span> Horario de Atención </span>
+                <span><strong> Lunes a Viernes: </strong></span>
+                <span><strong> 08 AM – 08 PM </strong></span>
+              </li>
+              <li class="cart-4">
+                <img src="../img/compass_icon.png" alt="" />
+                <span
+                  ><strong>
+                    Santiago del Estero 158, T4000 San Miguel de Tucumán,
+                    Tucumán
+                  </strong></span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer_botton">
+          <div class="container">
+            <span><strong>© 2023 ExcelCare Centro Médico</strong></span>
+          </div>
+        </div>
+      </section>
+    </footer>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/modalForm.js"></script>
+    <script src="../js/form.js"></script>
     <script src="../js/admin.js"></script>
   </body>
 </html>
