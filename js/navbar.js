@@ -1,8 +1,8 @@
 window.addEventListener("scroll", function () {
   const logo = document.getElementById("logo");
-  const content = document.querySelector(".content");
   const scrollPosition = window.scrollY;
-  if (scrollPosition < 100) {
+  const windowWidth = window.innerWidth;
+  if (scrollPosition < 200 && !(windowWidth < 955)) {
     logo.style.padding = "20px 0";
   } else {
     logo.style.padding = "0";
