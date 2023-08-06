@@ -1,13 +1,11 @@
 main {
   background: url(../img/family-doctor-035.png) #eeeeee;
   padding: 130px 0 40px 0;
-}
 .content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   justify-content: space-around;
-}
 .consult {
   display: flex;
   flex-direction: column;
@@ -23,7 +21,6 @@ main {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   text-align: center;
-}
 .consult form {
   display: flex;
   flex-direction: column;
