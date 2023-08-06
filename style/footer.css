@@ -5,6 +5,7 @@ footer {
   background: url(../img/family-doctor-018.jpg) #eeeeee;
   background-size: cover;
   background-position: center;
+  box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.4);
 }
 .footer_top {
   display: flex;
@@ -35,7 +36,6 @@ footer {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-
   text-align: center;
 }
 .footer_card li {

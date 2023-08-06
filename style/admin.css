@@ -1,6 +1,6 @@
 main {
-  padding-top: 120px;
   background-color: #212529;
+  padding-top: 90px;
 }
 main div table thead tr td {
   width: 200px;
@@ -21,4 +21,9 @@ main div table thead tr td {
 }
 .userTable {
   text-align: center;
+}
+@media screen and (max-width: 992px) {
+  main {
+    padding-top: 0;
+  }
 }
