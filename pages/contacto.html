@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>especialidades</title>
     <link rel="stylesheet" href="../style/navbar.css" />
+    <link rel="stylesheet" href="../style/contacto.css" />
     <link rel="stylesheet" href="../style/footer.css" />
     <link rel="stylesheet" href="../style/modal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,7 +31,7 @@
       <nav>
         <div class="container">
           <div class="nav">
-            <a href="./index.html"
+            <a href="../index.html"
               ><img id="logo" src="../img/logo.png" alt=""
             /></a>
             <div class="menu-toggle">
@@ -40,11 +41,9 @@
                 <div class="bar"></div>
               </div>
               <ul class="nav-links">
-                <li>
-                  <a href="../pages/especialidades.html">Especialidades</a>
-                </li>
+                <li><a href="./especialidades.html">Especialidades</a></li>
                 <li><a href="#">Profesionales</a></li>
-                <li><a href="./pages/contacto.html">Contacto</a></li>
+                <li><a href="#">Contacto</a></li>
                 <li>
                   <button id="buttonRegister_p">Registro pacientes</button>
                 </li>
@@ -62,7 +61,80 @@
       </nav>
     </header>
     <main>
-      <h1>hola</h1>
+      <section class="container content">
+        <div class="contact">
+          <div>
+            <h1>Contacto</h1>
+            <p>
+              En ExcelCare, estamos para ayudarlo. Háganos una consulta por una
+              de nuestras vías de comunicación y será respondido a la brevedad.
+            </p>
+          </div>
+          <ul class="cart-3 info">
+            <li>
+              <img src="../img/mail_message_icon.png" alt="" />
+              <div>
+                <span>Email</span>
+                <span><strong>info@excelcare.com.ar</strong></span>
+              </div>
+            </li>
+            <li>
+              <img src="../img/phone_icon.png" alt="" />
+              <div>
+                <span> Teléfono de Informes</span>
+                <span><strong>381 4080337</strong></span>
+              </div>
+            </li>
+            <li>
+              <img src="../img/clock_icon.png" alt="" />
+              <div>
+                <span>Horario de Atención</span>
+                <span><strong>Lunes a Viernes:</strong></span>
+                <span><strong>08 AM – 08 PM</strong></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="consult">
+          <h2>Envíenos su Consulta</h2>
+          <form>
+            <div>
+              <label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nombre"
+                  maxlength="24"
+                />
+              </label>
+              <label>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Numero de celular"
+                  maxlength="11"
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-Mail"
+                  maxlength="35"
+                />
+              </label>
+              <select>
+                <option value="profesional">Profesional</option>
+                <option value="paciente">Paciente</option>
+              </select>
+            </div>
+            <textarea name="consulta" cols="30" rows="10"></textarea>
+            <button type="submit">ENVIAR</button>
+          </form>
+        </div>
+      </section>
     </main>
     <footer>
       <section class="button">
