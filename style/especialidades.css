@@ -1,8 +1,8 @@
 body {
   margin: 0;
 }
-main {
-  padding-top: 100px;
+.content {
+  padding-top: 90px;
 }
 .background {
   background: url(../img/family-doctor-background.png) #eeeeee;
