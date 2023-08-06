@@ -1,13 +1,11 @@
 main {
   background: url(../img/family-doctor-035.png) #eeeeee;
-  padding: 130px 0;
-}
+  padding: 130px 0 40px 0;
 .content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 50px;
-}
+  justify-content: space-around;
 .consult {
   display: flex;
   flex-direction: column;
@@ -20,7 +18,9 @@ main {
 .consult h2 {
   font-size: 55px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-}
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-align: center;
 .consult form {
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@ main {
 }
 .consult form div label input {
   background-color: #f8f8f8;
-  width: 250px;
+  width: 210px;
   padding: 5px;
   border: none;
   border-radius: 5px;
@@ -42,7 +42,7 @@ main {
 }
 .consult form div select {
   background-color: #f8f8f8;
-  width: 250px;
+  width: 210px;
   border: none;
   border-radius: 5px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
@@ -59,8 +59,6 @@ main {
 }
 .consult form button {
   background-color: #f8f8f8;
-  margin: auto;
-  width: 400px;
   border: none;
   border-radius: 5px;
   background-color: white;
@@ -71,6 +69,7 @@ main {
 .contact {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 .contact div {
   display: flex;
@@ -104,8 +103,59 @@ main {
 .info li {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 .info li div {
   gap: 0;
+}
+@media screen and (max-width: 992px) {
+  main {
+    padding: 20px 0;
+  }
+}
+@media screen and (max-width: 500px) {
+  .content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .info {
+    padding: 15px;
+  }
+  .contact {
+    width: 100%;
+  }
+  .contact div {
+    gap: 0;
+  }
+  .contact div h1 {
+    font-size: 60px;
+    text-align: center;
+  }
+  .contact div p {
+    width: auto;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+  .consult {
+    width: 100%;
+    gap: 15px;
+  }
+  .consult div {
+    flex-direction: column;
+  }
+  .consult h2 {
+    font-size: 30px;
+  }
+  .consult form div {
+    flex-wrap: wrap;
+  }
+  .consult form div label input {
+    width: 100%;
+  }
+  .consult form div select {
+    width: 100%;
+    padding: 5px;
+  }
 }

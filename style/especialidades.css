@@ -1,7 +1,7 @@
 body {
   margin: 0;
 }
-.content {
+main {
   padding-top: 90px;
 }
 .background {
@@ -26,7 +26,7 @@ body {
   );
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
-.top div h2 {
+.top div div h2 {
   margin: 0;
   padding: 50px 0;
   font-family: "Roboto", sans-serif;
@@ -88,14 +88,14 @@ body {
 }
 
 @media screen and (max-width: 992px) {
-  .top div h2 {
+  main {
+    padding-top: 0;
+  }
+  .top div div h2 {
     padding: 40px 0;
     font-size: 30px;
   }
   .mid ul {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-  main {
-    padding-top: 0;
   }
 }

@@ -52,6 +52,7 @@
   .nav {
     align-items: center;
     justify-content: space-between;
+    padding: 15px 0;
   }
   .nav a img {
     width: 200px;
@@ -101,7 +102,7 @@
   .nav-links.active {
     margin-top: 10px;
     padding: 5px;
-    height: 235px;
+    height: auto;
     border-top: 2px solid rgb(0, 94, 234);
   }
   .nav-links li a {
