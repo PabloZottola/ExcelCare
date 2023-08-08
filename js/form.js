@@ -39,9 +39,8 @@ function checkEmptySpacesRegister_M(
 function checkEmptySpacesLogin(email, password) {
   if (email.trim() === "" || password.trim() === "") {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 function validateDataRegister_P(
   nameUser,
@@ -209,7 +208,7 @@ function validateDataLogin(email, password) {
   } else if (User[0].password !== password) {
     formError.textContent = "Contraseña incorrecta.";
     return;
-  } else if (email == "admin@gmail.com" && password == "admin123") {
+  } else if (email === "admin@gmail.com" && password === "admin123") {
     localStorage.setItem("isAdmin", "true");
     window.location.href = "http://127.0.0.1:5500/pages/admin.html";
     return;

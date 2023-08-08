@@ -30,7 +30,6 @@ main {
 
 .slides div h2 {
   position: absolute;
-  z-index: 500;
   color: white;
   font-size: 50px;
   font-family: "Roboto", sans-serif;
