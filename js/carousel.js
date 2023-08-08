@@ -24,14 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
   nextBtn.addEventListener("click", function () {
     nextSlide();
     clearInterval(interval);
-    interval = setInterval(nextSlide, 5000);
+    interval = setInterval(nextSlide, 10000);
   });
 
   prevBtn.addEventListener("click", function () {
     prevSlide();
     clearInterval(interval);
-    interval = setInterval(nextSlide, 5000);
+    interval = setInterval(nextSlide, 10000);
   });
-
-  const interval = setInterval(nextSlide, 5000);
+  interval = setInterval(nextSlide, 5000);
 });
