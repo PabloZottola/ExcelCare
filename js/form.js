@@ -198,6 +198,8 @@ function validateDataRegister_M(
 }
 function validateDataLogin(email, password) {
   let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
+  const login = document.getElementById("buttonLogin");
+
   User = aprovUser.filter((user) => user.email === email);
   console.log(User[0]);
   if (User[0] === undefined) {
@@ -220,14 +222,15 @@ function validateDataLogin(email, password) {
     formError.textContent = "Contraseña incorrecta.";
     return;
   } else if (email === "admin@gmail.com" && password === "admin123") {
-    localStorage.setItem("isAdmin", "true");
+    localStorage.setItem("isLoggin", "admin");
     window.location.href = "http://127.0.0.1:5500/pages/admin.html";
+    login.innerHTML = 'Panel de Control'
     return;
   } else if (User[0].matricula == null) {
-    localStorage.setItem("isPaciente", "true");
+    localStorage.setItem("isLoggin", "paciente");
     window.location.href = "http://127.0.0.1:5500/pages/paciente.html";
   } else {
-    localStorage.setItem("isMedico", "true");
+    localStorage.setItem("isLoggin", "medico");
     window.location.href = "http://127.0.0.1:5500/pages/medico.html";
   }
 }
@@ -344,4 +347,20 @@ function recoverPassword(event) {
       Body: "hola soy un mensaje de recuperar contraseña. Saludos cordiales.",
     }).then((message) => alert(message));
   }
+}
+window.onload = function () {
+  const Loggin = localStorage.getItem("isLoggin");
+  const login = document.getElementById("buttonLogin");
+  const panel = document.getElementById("Panel");
+
+  if (Loggin === 'admin') {
+    login.remove();
+    panel.innerHTML = `
+      <button id="buttonPanel">Panel de control</button>
+    `;
+    document.getElementById("buttonPanel").onclick = panelControl;
+  }
+};
+function panelControl() {
+  window.location.href = "../pages/admin.html"
 }

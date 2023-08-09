@@ -13,7 +13,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
 }
 
 .modalContainer {
@@ -76,6 +75,18 @@ body {
   font-size: 15px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
+
+.validateLoggin {
+  font-size: 20px;
+  margin-bottom: 14px;
+  padding: 2px 0;
+  min-width: 240px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  background-color: white;
+}
+
 .recoverPassword {
   border: none;
   background: none;
@@ -86,13 +97,4 @@ body {
   font-weight: 600;
   text-decoration: underline;
   color: rgb(85, 85, 85);
-}
-.validateLogin {
-  font-size: 20px;
-  padding: 2px 0;
-  min-width: 240px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  background-color: white;
 }
