@@ -76,10 +76,19 @@ body {
   font-size: 15px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
-
-.registerForm button {
-  font-size: 20px;
+.recoverPassword {
+  border: none;
+  background: none;
+  font-style: unset;
   margin-bottom: 14px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  text-decoration: underline;
+  color: rgb(85, 85, 85);
+}
+.validateLogin {
+  font-size: 20px;
   padding: 2px 0;
   min-width: 240px;
   border: none;

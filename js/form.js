@@ -199,10 +199,21 @@ function validateDataRegister_M(
 function validateDataLogin(email, password) {
   let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
   User = aprovUser.filter((user) => user.email === email);
+  console.log(User[0]);
+  if (User[0] === undefined) {
+    User.push({
+      nameUser: "",
+      email: "",
+      phone: "",
+      password: "",
+      matricula: "",
+    });
+  }
+  console.log(User[0]);
   if (checkEmptySpacesLogin(email, password)) {
     formError.textContent = "Todos los campos son obligatorios.";
     return;
-  } else if (User[0].email !== email) {
+  } else if (email !== User[0].email) {
     formError.textContent = "E-mail no registrado.";
     return;
   } else if (User[0].password !== password) {
@@ -311,3 +322,26 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("aprobados", JSON.stringify(aprovUser));
   }
 });
+
+function recoverPassword(event) {
+  event.preventDefault();
+  const email = document.getElementById("email").value;
+  let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
+  User = aprovUser.filter((user) => user.email === email);
+
+  if (email.trim() === "") {
+    formError.textContent = "Debe ingresar un email.";
+  } else if (User[0] === undefined) {
+    formError.textContent = "Usuario no registrado.";
+  } else {
+    Email.send({
+      Host: "smtp.elasticemail.com",
+      Username: "pablozottola66@gmail.com",
+      Password: "A195DAB694DB03A96AE5EC8A44078509D383",
+      To: email,
+      From: "pablozottola66@gmail.com",
+      Subject: "Recuperar contraseña",
+      Body: "hola soy un mensaje de recuperar contraseña. Saludos cordiales.",
+    }).then((message) => alert(message));
+  }
+}

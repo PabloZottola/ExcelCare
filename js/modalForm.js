@@ -174,7 +174,8 @@ function modalLogin() {
                   maxlength="20"
                 />
               </label>
-              <button id="submitForm" type="submit" onclick="validateLogin(event)">Entrar</button>
+              <button class="validateLogin" id="submitForm" type="submit" onclick="validateLogin(event)">Entrar</button>
+              <button class="recoverPassword" type="submit" onclick="recoverPassword(event)">Recuperar Contraseña</button>
             </form>
           </div>
         </div>    
