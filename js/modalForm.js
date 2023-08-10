@@ -63,7 +63,7 @@ function modalRegistro_P() {
                   maxlength="20"
                 />
               </label>
-              <button id="submitForm" type="submit" onclick="validateRegister_P(event)">Registrarse</button>
+              <button class="validate" id="submitForm" type="submit" onclick="validateRegister_P(event)">Registrarse</button>
             </form>
           </div>
         </div>    
@@ -135,7 +135,7 @@ function modalRegistro_M() {
                   maxlength="20"
                 />
               </label>
-              <button id="submitForm" type="submit" onclick="validateRegister_M(event)">Registrarse</button>
+              <button class="validate" id="submitForm" type="submit" onclick="validateRegister_M(event)">Registrarse</button>
             </form>
           </div>
         </div>    
@@ -174,7 +174,7 @@ function modalLogin() {
                   maxlength="20"
                 />
               </label>
-              <button class="validateLogin" id="submitForm" type="submit" onclick="validateLogin(event)">Entrar</button>
+              <button class="validate" id="submitForm" type="submit" onclick="validateLogin(event)">Entrar</button>
               <button class="recoverPassword" type="submit" onclick="recoverPassword(event)">Recuperar Contraseña</button>
             </form>
           </div>

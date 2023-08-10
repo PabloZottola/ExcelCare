@@ -13,6 +13,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 999;
 }
 
 .modalContainer {
@@ -51,7 +52,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin: 10px;
+  margin: 16px 8px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -76,9 +77,8 @@ body {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.validateLoggin {
+.validate {
   font-size: 20px;
-  margin-bottom: 14px;
   padding: 2px 0;
   min-width: 240px;
   border: none;
@@ -91,7 +91,6 @@ body {
   border: none;
   background: none;
   font-style: unset;
-  margin-bottom: 14px;
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-weight: 600;

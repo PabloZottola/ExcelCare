@@ -199,9 +199,7 @@ function validateDataRegister_M(
 function validateDataLogin(email, password) {
   let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
   const login = document.getElementById("buttonLogin");
-
   User = aprovUser.filter((user) => user.email === email);
-  console.log(User[0]);
   if (User[0] === undefined) {
     User.push({
       nameUser: "",
@@ -211,7 +209,6 @@ function validateDataLogin(email, password) {
       matricula: "",
     });
   }
-  console.log(User[0]);
   if (checkEmptySpacesLogin(email, password)) {
     formError.textContent = "Todos los campos son obligatorios.";
     return;
@@ -222,15 +219,16 @@ function validateDataLogin(email, password) {
     formError.textContent = "Contraseña incorrecta.";
     return;
   } else if (email === "admin@gmail.com" && password === "admin123") {
-    localStorage.setItem("isLoggin", "admin");
+    localStorage.setItem("isLoggin", JSON.stringify(User));
     window.location.href = "http://127.0.0.1:5500/pages/admin.html";
-    login.innerHTML = 'Panel de Control'
+    login.innerHTML = "Panel de Control";
     return;
   } else if (User[0].matricula == null) {
-    localStorage.setItem("isLoggin", "paciente");
+    localStorage.setItem("isLoggin", JSON.stringify(User));
     window.location.href = "http://127.0.0.1:5500/pages/paciente.html";
   } else {
-    localStorage.setItem("isLoggin", "medico");
+    User.push(User[0]);
+    localStorage.setItem("isLoggin", JSON.stringify(User));
     window.location.href = "http://127.0.0.1:5500/pages/medico.html";
   }
 }
@@ -261,7 +259,6 @@ function storage(nameUser, email, phone, password, matricula) {
       }
     }
     let newUser = new User(nameUser, email, phone, password, matricula);
-    console.log(newUser);
     storedUsers.push(newUser);
     localStorage.setItem("usuarios", JSON.stringify(storedUsers));
   }
@@ -311,7 +308,7 @@ function validateLogin(event) {
 }
 document.addEventListener("DOMContentLoaded", function () {
   const email = "admin@gmail.com";
-  let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
+  const aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
   const administrador = aprovUser.find((user) => {
     return user.email === email;
   });
@@ -329,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function recoverPassword(event) {
   event.preventDefault();
   const email = document.getElementById("email").value;
-  let aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
+  const aprovUser = JSON.parse(localStorage.getItem("aprobados")) || [];
   User = aprovUser.filter((user) => user.email === email);
 
   if (email.trim() === "") {
@@ -349,18 +346,37 @@ function recoverPassword(event) {
   }
 }
 window.onload = function () {
-  const Loggin = localStorage.getItem("isLoggin");
+  const isLoggin = JSON.parse(localStorage.getItem("isLoggin")) || [];
   const login = document.getElementById("buttonLogin");
   const panel = document.getElementById("Panel");
-
-  if (Loggin === 'admin') {
+  if (isLoggin[0].email === "admin@gmail.com") {
     login.remove();
     panel.innerHTML = `
       <button id="buttonPanel">Panel de control</button>
     `;
-    document.getElementById("buttonPanel").onclick = panelControl;
+    document.getElementById("buttonPanel").onclick = panelAdmin;
+  } else if (isLoggin[0] === undefined) {
+    return;
+  } else if (isLoggin[0].matricula === null) {
+    login.remove();
+    panel.innerHTML = `
+      <button id="buttonPanel">Mi cuenta</button>
+    `;
+    document.getElementById("buttonPanel").onclick = panelUser;
+  } else if (isLoggin[0].matricula.length === 5) {
+    login.remove();
+    panel.innerHTML = `
+      <button id="buttonPanel">Panel de medico</button>
+    `;
+    document.getElementById("buttonPanel").onclick = panelMedic;
   }
 };
-function panelControl() {
-  window.location.href = "../pages/admin.html"
+function panelAdmin() {
+  window.location.href = "../pages/admin.html";
+}
+function panelUser() {
+  window.location.href = "../pages/paciente.html";
+}
+function panelMedic() {
+  window.location.href = "../pages/medico.html";
 }
