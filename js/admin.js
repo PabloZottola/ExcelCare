@@ -171,10 +171,9 @@ function logout() {
 }
 
 window.onload = function () {
-  const isAdmin = localStorage.getItem("isLoggin");
+  const isLoggin = JSON.parse(localStorage.getItem("isLoggin")) || [];
   const login = document.getElementById("buttonLogin");
   const panel = document.getElementById("Panel");
-
   userTable();
   approvedTable();
   blockTable();
@@ -182,9 +181,7 @@ window.onload = function () {
     panel.innerHTML = `
       <button id="buttonPanel">Panel de control</button>
     `;
-    document.getElementById("buttonPanel").onclick = panelControl;
-  if (isAdmin !== 'admin') {
-    window.location.href = "../pages/index.html";
-    
+  if (isLoggin[0].nameUser !== 'admin') {
+    window.location.href = "../index.html";
   }
 };

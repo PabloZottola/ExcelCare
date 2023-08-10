@@ -19,7 +19,6 @@ function mostrarTurnosGuardados(turnosGuardadosArray) {
   const turnosLoggin =
     JSON.parse(localStorage.getItem("turnosGuardados")) || [];
   turnosGuardadosList.innerHTML = "";
-
   User = turnosLoggin.filter((user) => user.nombre === userLoggin[0].nameUser);
 
   User.forEach((turno, index) => {
