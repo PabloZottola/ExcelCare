@@ -166,16 +166,25 @@ const approvedUsers = (email) => {
 };
 
 function logout() {
-  localStorage.removeItem("isAdmin");
+  localStorage.removeItem("isLoggin");
   window.location.href = "../index.html";
 }
 
 window.onload = function () {
+  const isAdmin = localStorage.getItem("isLoggin");
+  const login = document.getElementById("buttonLogin");
+  const panel = document.getElementById("Panel");
+
   userTable();
   approvedTable();
   blockTable();
-  const isAdmin = localStorage.getItem("isAdmin");
-  if (!isAdmin) {
-    window.location.href = "../pages/admin.html";
+    login.remove();
+    panel.innerHTML = `
+      <button id="buttonPanel">Panel de control</button>
+    `;
+    document.getElementById("buttonPanel").onclick = panelControl;
+  if (isAdmin !== 'admin') {
+    window.location.href = "../pages/index.html";
+    
   }
 };

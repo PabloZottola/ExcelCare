@@ -1,6 +1,7 @@
 main {
   background-color: #212529;
-  padding-top: 90px;
+  padding-top: 120px;
+  padding-bottom: 30px;
 }
 main div table thead tr td {
   width: 200px;
