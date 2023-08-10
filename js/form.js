@@ -209,7 +209,6 @@ function validateDataLogin(email, password) {
       matricula: "",
     });
   }
-  console.log(User);
   if (checkEmptySpacesLogin(email, password)) {
     formError.textContent = "Todos los campos son obligatorios.";
     return;
