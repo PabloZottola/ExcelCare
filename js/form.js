@@ -220,16 +220,16 @@ function validateDataLogin(email, password) {
     return;
   } else if (email === "admin@gmail.com" && password === "admin123") {
     localStorage.setItem("isLoggin", JSON.stringify(User));
-    window.location.href = "http://127.0.0.1:5500/pages/admin.html";
+    window.location.href = "../pages/admin.html";
     login.innerHTML = "Panel de Control";
     return;
   } else if (User[0].matricula == null) {
     localStorage.setItem("isLoggin", JSON.stringify(User));
-    window.location.href = "http://127.0.0.1:5500/pages/paciente.html";
+    window.location.href = "../pages/paciente.html";
   } else {
     User.push(User[0]);
     localStorage.setItem("isLoggin", JSON.stringify(User));
-    window.location.href = "http://127.0.0.1:5500/pages/medico.html";
+    window.location.href = "../pages/medico.html";
   }
 }
 function storage(nameUser, email, phone, password, matricula) {
