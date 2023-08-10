@@ -227,7 +227,6 @@ function validateDataLogin(email, password) {
     localStorage.setItem("isLoggin", JSON.stringify(User));
     window.location.href = "../pages/paciente.html";
   } else {
-    User.push(User[0]);
     localStorage.setItem("isLoggin", JSON.stringify(User));
     window.location.href = "../pages/medico.html";
   }
@@ -349,6 +348,15 @@ window.onload = function () {
   const isLoggin = JSON.parse(localStorage.getItem("isLoggin")) || [];
   const login = document.getElementById("buttonLogin");
   const panel = document.getElementById("Panel");
+  if (isLoggin[0] === undefined) {
+    isLoggin.push({
+      nameUser: "",
+      email: "",
+      phone: "",
+      password: "",
+      matricula: "",
+    });
+  }
   if (isLoggin[0].email === "admin@gmail.com") {
     login.remove();
     panel.innerHTML = `
