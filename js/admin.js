@@ -181,6 +181,16 @@ window.onload = function () {
     panel.innerHTML = `
       <button id="buttonPanel">Panel de control</button>
     `;
+    if (isLoggin[0] === undefined) {
+      isLoggin.push({
+        nameUser: "",
+        email: "",
+        phone: "",
+        password: "",
+        matricula: "",
+      });
+    }
+  console.log(isLoggin[0].nameUser);
   if (isLoggin[0].nameUser !== 'admin') {
     window.location.href = "../index.html";
   }
