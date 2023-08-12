@@ -101,9 +101,19 @@ function validateDataRegister_P(
     formError.textContent = "Las contraseña no coinciden";
     return;
   } else {
-    console.log("Registro Completo");
     formError.textContent = "";
     registerForm.reset();
+    setTimeout(() => {
+      modalOverlay.remove();
+    }, 3000);
+    modalComplete.innerHTML = `
+        <div id="modalContainer" class="modalContainer cart-4">
+          <div class="modalContent">
+            <img src="../img/registro_completo.png" alt="" />
+            <h2>¡Registro Completado!</h2>
+          </div>
+        </div>`;
+    modalComplete.classList.remove("animar");
     return true;
   }
 }
@@ -190,9 +200,19 @@ function validateDataRegister_M(
     formError.textContent = "Las contraseña no coinciden";
     return;
   } else {
-    console.log("Registro Completo");
     formError.textContent = "";
     registerForm.reset();
+    setTimeout(() => {
+      modalOverlay.remove();
+    }, 3000);
+    modalComplete.innerHTML = `
+        <div id="modalContainer" class="modalContainer cart-4">
+          <div class="modalContent">
+            <img src="../img/registro_completo.png" alt="" />
+            <h2>¡Registro Completado!</h2>
+          </div>
+        </div>`;
+    modalComplete.classList.remove("animar");
     return true;
   }
 }
@@ -247,7 +267,6 @@ function storage(nameUser, email, phone, password, matricula) {
     storedUsers.push(newUser);
     localStorage.setItem("usuarios", JSON.stringify(storedUsers));
   } else {
-    console.log(matricula);
     class User {
       constructor(nameUser, email, phone, password, matricula) {
         (this.nameUser = nameUser),
@@ -344,10 +363,11 @@ function recoverPassword(event) {
     }).then((message) => alert(message));
   }
 }
-window.onload = function () {
+function buttonLogin() {
   const isLoggin = JSON.parse(localStorage.getItem("isLoggin")) || [];
   const login = document.getElementById("buttonLogin");
   const panel = document.getElementById("Panel");
+
   if (isLoggin[0] === undefined) {
     isLoggin.push({
       nameUser: "",
@@ -363,7 +383,6 @@ window.onload = function () {
       <button id="buttonPanel">Panel de control</button>
     `;
     document.getElementById("buttonPanel").onclick = panelAdmin;
-  } else if (isLoggin[0] === undefined) {
     return;
   } else if (isLoggin[0].matricula === null) {
     login.remove();
@@ -371,14 +390,18 @@ window.onload = function () {
       <button id="buttonPanel">Mi cuenta</button>
     `;
     document.getElementById("buttonPanel").onclick = panelUser;
+    return;
   } else if (isLoggin[0].matricula.length === 5) {
     login.remove();
     panel.innerHTML = `
       <button id="buttonPanel">Panel de medico</button>
     `;
     document.getElementById("buttonPanel").onclick = panelMedic;
+    return;
+  } else {
+    return;
   }
-};
+}
 function panelAdmin() {
   window.location.href = "../pages/admin.html";
 }
@@ -388,3 +411,6 @@ function panelUser() {
 function panelMedic() {
   window.location.href = "../pages/medico.html";
 }
+window.onload = function () {
+  buttonLogin();
+};

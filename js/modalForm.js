@@ -1,7 +1,6 @@
 function closeModal() {
   const modalOverlay = document.getElementById("modalOverlay");
   const modalCloser = document.getElementById("modalCloser");
-
   modalCloser.addEventListener("click", function () {
     modalOverlay.remove();
   });
@@ -11,6 +10,7 @@ function modalRegistro_P() {
     modal.innerHTML = `
       <div id="modalOverlay" class="modalOverlay">
         <div id="modalContainer" class="modalContainer cart-1">
+          <div id="modalComplete" class="modalComplete animar"></div>
           <span id="modalCloser" class="modalCloser">x</span>
           <img src="../img/paciente.png" alt="" />
           <p class="modalHeader">REGISTRO PACIENTES</p>
@@ -75,6 +75,7 @@ function modalRegistro_M() {
     modal.innerHTML = `
       <div id="modalOverlay" class="modalOverlay">
         <div id="modalContainer" class="modalContainer cart-2">
+          <div id="modalComplete" class="modalComplete animar"></div>
           <span id="modalCloser" class="modalCloser">x</span>
           <img src="../img/medico.png" alt="" />
           <p class="modalHeader">REGISTRO MEDICOS</p>
@@ -182,6 +183,24 @@ function modalLogin() {
       </div>`;
   }
 }
+function modalBlock(user, email) {
+  if (document.getElementById("modalOverlay") === null) {
+    modal.innerHTML = `
+      <div id="modalOverlay" class="modalOverlay">
+        <div id="modalContainer" class="modalContainer cart-4">
+          <span id="modalCloser" class="modalCloser">x</span>
+          <div>
+            <img src="../img/bloquear-usuario.png" alt="" />
+          </div>
+          <p class="modalBlockHeader">Seguro que quieres</p>
+          <p class="modalBlockHeader">bloquear a ${user}</p>
+          <div class="modalContent">
+            <button class="bloquear" id="submitForm" onclick="blockedUsers('${email}')">Bloquear</button>
+          </div>
+        </div>    
+      </div>`;
+  }
+}
 buttonRegister_p.addEventListener("click", function () {
   modalRegistro_P();
   closeModal();
@@ -194,3 +213,7 @@ buttonLogin.addEventListener("click", function () {
   modalLogin();
   closeModal();
 });
+function buttonBlock(user, email) {
+  modalBlock(user, email);
+  closeModal();
+}

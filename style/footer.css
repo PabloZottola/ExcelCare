@@ -78,6 +78,7 @@ footer {
   padding: 3px 0;
   color: rgb(141, 141, 141);
 }
+
 .gradient_footer {
   background: radial-gradient(
     circle,
@@ -96,5 +97,8 @@ footer {
 @media screen and (max-width: 580px) {
   .footer_top h3 {
     font-size: 45px;
+  }
+  .footer_botton div {
+    text-align: center;
   }
 }

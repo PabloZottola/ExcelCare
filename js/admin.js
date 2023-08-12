@@ -21,7 +21,7 @@ function userTable() {
         </button>
       </td>
       <td>
-        <button class="icons" onclick="blockedUsers('${user.email}')">
+        <button class="icons" onclick="buttonBlock('${user.nameUser}', '${user.email}')">
           <img src="../img/trash.png" alt="check-icon" />
         </button>
       </td>`;
@@ -38,7 +38,7 @@ function userTable() {
         </button>
       </td>
       <td>
-        <button class="icons" onclick="blockedUsers('${user.email}')">
+        <button class="icons" onclick="buttonBlock('${user.nameUser}', '${user.email}')">
           <img src="../img/trash.png" alt="check-icon" />
         </button>
       </td>`;
@@ -51,7 +51,7 @@ function blockTable() {
   const blockTable = document.getElementById("blockTable");
   blockTable.innerHTML = "";
   blockUser.map((user) => {
-    let tr = document.createElement("tr");
+    const tr = document.createElement("tr");
     if (user.matricula !== null) {
       tr.innerHTML = `
       <td class="table-dark">${user.nameUser}</td>
@@ -91,7 +91,7 @@ function approvedTable() {
   approvedTable.innerHTML = "";
   aprovUser = aprovUser.filter((user) => user.email != "admin@gmail.com");
   aprovUser.map((user) => {
-    let tr = document.createElement("tr");
+    const tr = document.createElement("tr");
     if (user.matricula !== null) {
       tr.innerHTML = `
       <td class="table-dark">${user.nameUser}</td>
@@ -101,7 +101,7 @@ function approvedTable() {
       <td class="table-dark">${user.matricula}</td>
       <td></td>
       <td>
-        <button class="icons" onclick="blockedUsers('${user.email}')">
+        <button class="icons" onclick="buttonBlock('${user.nameUser}', '${user.email}')">
           <img src="../img/trash.png" alt="check-icon" />
         </button>
       </td>
@@ -115,7 +115,7 @@ function approvedTable() {
         <td class="table-dark">${user.matricula}</td>
         <td></td>
         <td>
-          <button class="icons" onclick="blockedUsers('${user.email}')">
+          <button class="icons" onclick="buttonBlock('${user.nameUser}', '${user.email}')">
             <img src="../img/trash.png" alt="check-icon" />
           </button>
         </td>
@@ -139,7 +139,7 @@ const blockedUsers = (email) => {
   }
   blockUser.push(bloqueado[0]);
   localStorage.setItem("bloqueados", JSON.stringify(blockUser));
-
+  modalOverlay.remove();
   userTable();
   approvedTable();
   blockTable();
@@ -177,21 +177,20 @@ window.onload = function () {
   userTable();
   approvedTable();
   blockTable();
-    login.remove();
-    panel.innerHTML = `
+  login.remove();
+  panel.innerHTML = `
       <button id="buttonPanel">Panel de control</button>
     `;
-    if (isLoggin[0] === undefined) {
-      isLoggin.push({
-        nameUser: "",
-        email: "",
-        phone: "",
-        password: "",
-        matricula: "",
-      });
-    }
-  console.log(isLoggin[0].nameUser);
-  if (isLoggin[0].nameUser !== 'admin') {
+  if (isLoggin[0] === undefined) {
+    isLoggin.push({
+      nameUser: "",
+      email: "",
+      phone: "",
+      password: "",
+      matricula: "",
+    });
+  }
+  if (isLoggin[0].nameUser !== "admin") {
     window.location.href = "../index.html";
   }
 };
