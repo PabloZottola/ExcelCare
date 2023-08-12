@@ -169,8 +169,7 @@ function logout() {
   localStorage.removeItem("isLoggin");
   window.location.href = "../index.html";
 }
-
-window.onload = function () {
+function admin() {
   const isLoggin = JSON.parse(localStorage.getItem("isLoggin")) || [];
   const login = document.getElementById("buttonLogin");
   const panel = document.getElementById("Panel");
@@ -193,4 +192,7 @@ window.onload = function () {
   if (isLoggin[0].nameUser !== "admin") {
     window.location.href = "../index.html";
   }
+}
+window.onload = function () {
+  admin();
 };

@@ -1,66 +1,72 @@
-function mostrarTurnosGuardados(turnosGuardadosArray) {
-  const turnosGuardadosList = document.getElementById("turnosGuardadosList");
+function mostrarTurnosGuardados() {
+  const turnGuardadosList = document.getElementById("turnosGuardadosList");
   const userLoggin = JSON.parse(localStorage.getItem("isLoggin")) || [];
-  const turnosLoggin =
-    JSON.parse(localStorage.getItem("turnosGuardados")) || [];
-
-  User = turnosLoggin.filter((user) => user.nombre === userLoggin[0].nameUser);
+  const turnLoggin = JSON.parse(localStorage.getItem("turnosGuardados")) || [];
+  turnGuardadosList.innerHTML = "";
+  User = turnLoggin.filter((user) => user.emailUser === userLoggin[0].email);
   User.map((user) => {
     const li = document.createElement("li");
-    console.log(user);
     li.innerHTML = `
       <div>
-        <span><strong>Paciente: </strong>${user.nombre}</span>
+        <span><strong>Paciente: </strong>${user.nameUser}</span>
+        <span><strong>Fecha: </strong>${user.fecha}</span>
         <span><strong>Hora: </strong>${user.hora}</span>
         <span><strong>Profesional: </strong>${user.profesional}</span>
         <span><strong>Patología: </strong>${user.patologia}</span>
+        <span><strong>Numero de turno: </strong>${user.idTurno}</span>
       </div>
-      <div>
-        <button class="deleteButton">x</button>
-      </div>
-
+      <button class="deleteButton" onclick="buttonTurn('${user.idTurno}')">x</button>
     `;
-    turnosGuardadosList.appendChild(li);
+    turnGuardadosList.appendChild(li);
   });
 }
-function eliminarTurnoGuardado(index, turnosGuardadosArray) {
-  const turnoGuardadoEliminado = turnosGuardadosArray.splice(index, 1)[0];
-  localStorage.setItem("turnosGuardados", JSON.stringify(turnosGuardadosArray));
-  mostrarTurnosGuardados(turnosGuardadosArray);
+function eliminarTurn(id) {
+  const turnLoggin = JSON.parse(localStorage.getItem("turnosGuardados")) || [];
+  turn = turnLoggin.filter((turn) => turn.idTurno !== id);
+  localStorage.setItem("turnosGuardados", JSON.stringify(turn));
+  mostrarTurnosGuardados();
+  modalOverlay.remove();
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  const obtenerTurnosGuardados =
-    JSON.parse(localStorage.getItem("turnosGuardados")) || [];
-  const turnoForm = document.getElementById("turnoForm");
+function guardarTurn(event) {
+  event.preventDefault();
+  const turn = JSON.parse(localStorage.getItem("turnosGuardados")) || [];
   const isLoggin = JSON.parse(localStorage.getItem("isLoggin")) || [];
-  const turnosGuardadosArray = obtenerTurnosGuardados;
-  mostrarTurnosGuardados(turnosGuardadosArray);
+  const nameUser = isLoggin[0].nameUser;
+  const email = isLoggin[0].email;
+  const idTurno = IDUnico();
+  const fecha = document.getElementById("fecha").value;
+  const hora = document.getElementById("hora").value;
+  const profesional = document.getElementById("profesional").value;
+  const patologia = document.getElementById("patologia").value;
 
-  turnoForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const nombre = isLoggin[0].nameUser;
-    const fecha = document.getElementById("fecha").value;
-    const hora = document.getElementById("hora").value;
-    const profesional = document.getElementById("profesional").value;
-    const patologia = document.getElementById("patologia").value;
+  class Turn {
+    constructor(nameUser, fecha, hora, profesional, patologia, idTurno, email) {
+      (this.nameUser = nameUser),
+        (this.fecha = fecha),
+        (this.hora = hora),
+        (this.profesional = profesional),
+        (this.patologia = patologia),
+        (this.emailUser = email),
+        (this.idTurno = idTurno);
+    }
+  }
 
-    const nuevoTurno = {
-      nombre,
-      fecha,
-      hora,
-      profesional,
-      patologia,
-    };
-    turnosGuardadosArray.push(nuevoTurno);
-    localStorage.setItem(
-      "turnosGuardados",
-      JSON.stringify(turnosGuardadosArray)
-    );
-    mostrarTurnosGuardados(turnosGuardadosArray);
-    turnoForm.reset();
-  });
-});
+  let newTurn = new Turn(
+    nameUser,
+    fecha,
+    hora,
+    profesional,
+    patologia,
+    idTurno,
+    email
+  );
+  turn.push(newTurn);
+  localStorage.setItem("turnosGuardados", JSON.stringify(turn));
+  const turnos = JSON.parse(localStorage.getItem("turnosGuardados")) || [];
+  console.log(turnos);
+  turnoForm.reset();
+  mostrarTurnosGuardados();
+}
 
 function welcome() {
   const aprovUser = JSON.parse(localStorage.getItem("isLoggin")) || [];
@@ -92,5 +98,18 @@ window.onload = function () {
   } else if (isLoggin[0].nameUser === undefined) {
     window.location.href = "../index.html";
   }
+  buttonLogin();
+  mostrarTurnosGuardados();
   welcome();
 };
+function IDUnico() {
+  const fecha = new Date();
+  const hora = fecha.getHours();
+  const minutos = fecha.getMinutes();
+  const segundos = fecha.getSeconds();
+  const milisegundos = fecha.getMilliseconds();
+
+  const idUnico = `${hora}${minutos}${segundos}${milisegundos}`;
+
+  return idUnico;
+}

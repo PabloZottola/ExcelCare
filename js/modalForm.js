@@ -201,6 +201,24 @@ function modalBlock(user, email) {
       </div>`;
   }
 }
+function modalTurn(idTurno) {
+  if (document.getElementById("modalOverlay") === null) {
+    modal.innerHTML = `
+      <div id="modalOverlay" class="modalOverlay">
+        <div id="modalContainer" class="modalContainer cart-4">
+          <span id="modalCloser" class="modalCloser">x</span>
+          <div>
+            <img src="../img/bloquear-usuario.png" alt="" />
+          </div>
+          <p class="modalBlockHeader">Seguro que quieres</p>
+          <p class="modalBlockHeader">borrar el turno ${idTurno}</p>
+          <div class="modalContent">
+            <button class="bloquear" id="submitForm" onclick="eliminarTurn('${idTurno}')">Bloquear</button>
+          </div>
+        </div>    
+      </div>`;
+  }
+}
 buttonRegister_p.addEventListener("click", function () {
   modalRegistro_P();
   closeModal();
@@ -215,5 +233,9 @@ buttonLogin.addEventListener("click", function () {
 });
 function buttonBlock(user, email) {
   modalBlock(user, email);
+  closeModal();
+}
+function buttonTurn(idTurno) {
+  modalTurn(idTurno);
   closeModal();
 }

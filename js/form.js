@@ -367,7 +367,7 @@ function buttonLogin() {
   const isLoggin = JSON.parse(localStorage.getItem("isLoggin")) || [];
   const login = document.getElementById("buttonLogin");
   const panel = document.getElementById("Panel");
-
+  console.log(isLoggin[0]);
   if (isLoggin[0] === undefined) {
     isLoggin.push({
       nameUser: "",
