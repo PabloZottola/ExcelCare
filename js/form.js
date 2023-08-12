@@ -105,7 +105,7 @@ function validateDataRegister_P(
     registerForm.reset();
     setTimeout(() => {
       modalOverlay.remove();
-    }, 3000);
+    }, 2000);
     modalComplete.innerHTML = `
         <div id="modalContainer" class="modalContainer cart-4">
           <div class="modalContent">
@@ -204,7 +204,7 @@ function validateDataRegister_M(
     registerForm.reset();
     setTimeout(() => {
       modalOverlay.remove();
-    }, 3000);
+    }, 2000);
     modalComplete.innerHTML = `
         <div id="modalContainer" class="modalContainer cart-4">
           <div class="modalContent">
